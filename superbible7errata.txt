@@ -9,6 +9,8 @@ Spain
 
 p. 21: remove the last line of the shutdown() method (it is duplicated)
 p. 31: line 2: [...] and write its value to the *vs_color* output. [Reported by Simon-Pierre Cadieux]
+p. 40: and from -1.0 to 1.0 in the z dimension
+p. 41: that lies between -1.0 and 1.0
 p. 41: last sentence before the Culling section: There is no o_z
 p. 44: 3rd line from bottom: we can pass data from the *vertex* shader to the *fragment* shader
 p. 45: in the shader: offset is not defined. Remove " + offset" from the code
