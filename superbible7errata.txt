@@ -1,0 +1,72 @@
+Unofficial errata for OpenGL Superbible 7th edition
+
+Want to add some more? Write to fjabad@dsic.upv.es
+
+Paco Abad
+Universidad Politécnica de Valencia
+Spain
+
+
+p. 21: remove the last line of the shutdown() method (it is duplicated)
+p. 31: line 2: [...] and write its value to the *vs_color* output. [Reported by Simon-Pierre Cadieux]
+p. 41: last sentence before the Culling section: There is no o_z
+p. 44: 3rd line from bottom: we can pass data from the *vertex* shader to the *fragment* shader
+p. 45: in the shader: offset is not defined. Remove " + offset" from the code
+p. 61: Mathematically, the dot product is usually represented with a dot: V1 · V2 = V1_X V2_x ... The cross usually represents the cross product.
+p. 63: second paragraph: actually, in figure 4.3, V3 = V1 x V2 (the text says V3 is the result of V2 cross V1)
+p. 63: in the Length of a Vector section. Pythagoras's theorem apply both to 2D triangles and 3D triangles
+p. 64: In the equations for R_refract, R should be R_{in}
+p. 67: In the definition of the array A in row-major order, the second row of elements have the indices backwards (copy and paste typo from the column-major array).
+p. 80: the cube in the figure does not look like it measures 20x10x20. The X and Z dimensions look very different, and the X dimension should be a little bit longer (twice as long as the X dimension)
+p. 82: the definition of j, k in terms of the others are wrong. The combinations are:
+  i = jk, -i = kj; j = ki, -j = ik; k = ij, -k = ji [Reported by Pierre Testart]
+p. 82: *As with complex numbers, * multiplication of quaternions is non-commutative. (Multiplication of complex numbers is commutative) [Reported by Pierre Testart]
+p. 96: in the code for cubic_bspline_10, the two ifs should be moved at the top of the function
+p. 105: Listing 5.3. glUnmapNamedBuffer(GL_ARRAY_BUFFER) should be glUnmapNamedBuffer(buffer) [Reported by Bernhard Kerbl]
+p. 105: the accepted values for the usage parameter of glMap* are: GL_READ_ONLY, GL_WRITE_ONLY, or GL_READ_WRITE
+p. 116: Listing 5.8 last line, glVertexArrayVertexBuffer has incorrect usage, it's suppose to take in a stride and offset argument as well. [Reported by Sharjeel Qaiser]. Should be: glVertexArrayVertexBuffer(vao, 0, buffer, 0, sizeof(vertex));
+p. 118: Third paragraph: Uniforms are always considered to be *read only,* and they...
+p. 120: The definition of vColors should be GLfloat vColors[2][4] (it is CPU C++ code)
+p. 133: Last sentence: If we had set the bindings [...] we could have avoided the calls to *glGetUniformBlockIndex() and * glUniformBlockBinding() in Listing 5.20.
+p. 154: Section Texture Targets and Types, first paragraph. When using glCreateTextures this is not true anymore. It creates a new texture object of the given type
+p. 159: Beginning of 4th paragraph: All of the *texelFetch* functions
+p. 159: Third example of textureSize(gsampler3D ...) should be sampler3D
+p. 163: The function texture is used in shader 5.41, but explained in page 167
+p. 166: In the third example, glCreateTextures(..., &textures), remove the *&* in textures
+p. 167: Fifth line from bottom: directly to a single *texel*
+p. 178: In the example, glCreateTextures is missing a comma: glCreateTextures(GL_TEXTURE_2D_ARRAY*, *1, &tex)
+p. 179: The text about Listing 5.3 states that it uses instancing to draw the aliens, when it doesn't. It also states that the example does not use any vertex attribute, when it does (alien_index)
+p. 180: The computation of vs_out.alien is missing (vs_out.alien = alien_index % 64;)
+p. 181: The text after Listing 5.43 talks about using gl_InstanceID, but it is not used in the example
+p. 191: The variable head_pointer is read and write, so it should include the format layout qualifier (r32ui)
+p. 191: The in VS_OUT block at the end of the page should be: in VS_OUT { vec4 color; } fs_in;
+p. 222: End of 5th paragraph: [...] The next three issues are on *line 10*.
+p. 222: Line 14 from the bottom: *The last error* is saying that there is no version...
+p. 244: Table 7.1, the range for GL_FIXED should be -32,768.99998 to 32,767.99998
+p. 244: Table 7.1, the range for GL_UNSIGNED_INT should be *0 to * 4,294...
+p. 255: Figure 7.3b. There should be three strips, since there are two instances of the index 8 (probably the first 8 should be 4)
+p. 255: Paragraph before section "Instancing". [...] The *ninth* index (whose value *is 8*)
+p. 265: Third paragraph:  The size of the vertex array [...] as the number of *instances* we want to render.
+p. 294: Listing 7.19. The code is rendering the next-to-last simulation step (because the bound VAO was used as the source for the transformation feedback). To render the results of the last simulation step, call glBindVertexArray(m_vao[m_iteration_index & 1]); before drawing anything.
+p. 302: Last line. In contrast, if *any* vertex of a primitive has a negative value for gl_CullDistance[], the whole primitive will be discarded: No. All the cull distances should be negative (see https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/gl_CullDistance.xhtml)
+p. 307: Figure 8.1. Remove "uniform Harry" from the upper right corner
+p. 320: After the code, [...] in the tessellation *control* shader.
+p. 323: line 8: Each tessellated vertex is moved along the *normal* to the surface
+p. 325: The code is discarding a patch if *any* of its control points is behind the viewer. Change the || to &&
+p. 338: Listing 8.19. Add *float gl_CullDistance[];* to the definition of gl_in
+p. 338: After Listing 8.19, add gl_CullDistance to the list of members.
+p. 343: The paragraph before and after Listing 8.22 refer to a dot product of two vectors for deciding whether to cull the triangle or not, but the code in the listing is using the sign of the z component of the transformed normal
+p. 347: Second line: [...] a uniform matrix to store the model-view*-projection* transformation matrix
+p. 347: In the make_face function, the second line is clipped: [...](mat3(mvMatrix) * face_normal).z;
+p. 386: Figure 9.5 and Color Plate 1 are different, when they are supposed to be the same
+p. 386: First line, the name of the variables in the shader are color0 and color1
+p. 405: Table 9.7. The return value  GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE is missing
+p. 418: Line 5 from the bottom: The *glTexStorage3D() Multisample * -> glTexStorage3DMultisample()
+p. 427: Line 6 from the bottom: disable stencil testing -> set the stencil function to GL_ALWAYS
+p. 436: The equation should be: y = sqrt(8 / (x + 0.25))
+p. 568: last line. There should be a light's ambient component and a material's ambient reflectivity, as in the other examples. The shader in listing 13.1 also defines the ambient as a constant (contrarily as the equation in p. 570)
+p. 584: in the shader, the computation of vs_out.lightDir should use L instead of V.
+p. 601: Next to last paragraph: [...] white being the farthest possible depth value (one) [...] but the background in the Figure 13.18 is black. Is the background a special case?
+p. 762: according to the man page, glBufferStorage was available since GL 4.4, not 4.3 (http://docs.gl/gl4/glBufferStorage)
+p. 772: glNamedBufferStorage is missing
+
